@@ -30,7 +30,7 @@ def register():
         elif not password:
             error = "Password is required."
         elif (
-            db.execut("SELECT id FROM user WHERE username = ?", (username,)).fetchone()
+            db.execute("SELECT id FROM user WHERE username = ?", (username,)).fetchone()
             is not None
         ):
             error = f"User {username} is already registered"
@@ -67,7 +67,7 @@ def login():
         if error is None:
             session.clear()
             session["user_id"] = user["id"]
-            return redirect(url_for("index"))
+            return redirect(url_for("hello"))
 
         flash(error)
 
